@@ -1,0 +1,27 @@
+@import 'base';
+@import 'mixins';
+@import 'modificators';
+@import 'panels';
+@import 'components';
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~antd/dist/antd.css';
+
+// Some best-practice CSS that's useful for most apps
+// Just remove them if they're not what you want
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
