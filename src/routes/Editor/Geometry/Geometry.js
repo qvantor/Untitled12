@@ -25,18 +25,20 @@ class BoxGeometry extends Component {
   }
 
   render () {
-    const { item: { id, position, rotation, geometry, type }, onCreate } = this.props
+    const { item: { id, position, rotation, scale, geometry, type }, onCreate } = this.props
     const TagName = type
     return (
       <mesh
         name={id}
         onClick={this.click}
         ref={mesh => onCreate(mesh)}
+        position={new THREE.Vector3(position[0], position[1], position[2])}
         rotation={new THREE.Euler(
           THREE.Math.degToRad(rotation[0]),
           THREE.Math.degToRad(rotation[1]),
           THREE.Math.degToRad(rotation[2]))}
-        position={new THREE.Vector3(position[0], position[1], position[2])}>
+        scale={new THREE.Vector3(scale[0], scale[1], scale[2])}
+      >
         <TagName
           {...GeometryTypes[type]
             .map(item => ({ [item.key]: geometry[item.pos] }))

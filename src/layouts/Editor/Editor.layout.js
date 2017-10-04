@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import GeometriesCreator from 'components/GeometriesCreator/GeometriesCreator.component'
 import PositionEditor from 'components/PositionEditor/PositionEditor.component'
 import RotationEditor from 'components/RotationEditor/RotationEditor.component'
+import ScaleEditor from 'components/ScaleEditor/ScaleEditor.component'
 import GeometriesEditor from 'components/GeometriesEditor/GeometriesEditor.component'
 
 import { Layout } from 'antd'
@@ -21,6 +22,7 @@ export const EditorLayout = ({ children }) =>
           <GeometriesCreator />
           <PositionEditor />
           <RotationEditor />
+          <ScaleEditor />
           <GeometriesEditor />
         </div>
       </Sider>

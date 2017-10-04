@@ -1,5 +1,5 @@
 #### TODO
 - [x] Add Rotation
-- [ ] Add Scale
+- [x] Add Scale
 - [ ] Add Lights
 - [ ] Add Cameras

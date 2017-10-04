@@ -25,7 +25,7 @@ class GeometriesEditor extends Component {
     const { geometry, type } = selected
 
     return (
-      <div>
+      <div className='panel'>
         <h5>Geometry</h5>
         {GeometryTypes[type]
           .filter(item => item.type.name === 'number')
