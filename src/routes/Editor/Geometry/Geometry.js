@@ -20,9 +20,7 @@ class BoxGeometry extends Component {
     return nextProps.item !== this.props.item
   }
 
-  click = (e, { object }) => {
-    this.props.selectGeometry(object.name)
-  }
+  click = (e, { object }) => this.props.selectGeometry(object.name, 'geometries')
 
   render () {
     const { item: { id, position, rotation, scale, geometry, type }, onCreate } = this.props

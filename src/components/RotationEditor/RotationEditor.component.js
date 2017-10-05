@@ -7,7 +7,7 @@ import { MAX_SAFE_INTEGER } from 'utils/Geometries/Geometries.types'
 import { editGeometry } from 'store/objects/objects.actions'
 
 @connect((store) => ({
-  selected: store.objects.geometries.find(item => item.id === store.editor.selected),
+  selected: store.objects.geometries.find(item => item.id === store.editor.selected.id),
 }), { editGeometry })
 class RotationEditor extends Component {
   static propTypes = {

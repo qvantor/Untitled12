@@ -13,6 +13,11 @@ export default function objects (state = Model, { type, payload }) {
           item => Object.assign({}, item, payload.params)),
       }, { deep: true })
 
+    case constants.OBJECT_SELECTED_REMOVED:
+      return state.merge({
+        [payload.type]: state[payload.type].filter(item => item.id !== payload.id),
+      }, { deep: true })
+
     default:
       return state
   }

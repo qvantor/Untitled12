@@ -1,6 +1,9 @@
 import Immutable from 'seamless-immutable'
 
 export default Immutable({
-  selected: null,
+  selected: {
+    id: null,
+    type: null,
+  },
   drag: null,
 })

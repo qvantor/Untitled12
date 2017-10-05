@@ -23,6 +23,7 @@ class SceneElements extends Component {
   }
 
   elementCreated ({ element, type, index }) {
+    if (element === null) return
     elements[type][index] = element
     this.updateElements()
   }

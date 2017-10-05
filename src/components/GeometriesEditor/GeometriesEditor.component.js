@@ -6,7 +6,7 @@ import * as GeometryTypes from 'utils/Geometries/Geometries.types'
 import { editGeometry } from 'store/objects/objects.actions'
 import InputNumber from 'components/InputNumber/InputNumber.component'
 
-@connect((store) => ({ selected: store.objects.geometries.find(item => item.id === store.editor.selected), }),
+@connect((store) => ({ selected: store.objects.geometries.find(item => item.id === store.editor.selected.id), }),
   { editGeometry })
 class GeometriesEditor extends Component {
   static propTypes = {
