@@ -5,7 +5,7 @@ import React3 from 'react-three-renderer'
 import MouseInput from 'utils/MouseInput'
 
 import SceneElements from './Scene.elements'
-import Cameras from './Scene.cameras'
+import Camera from './Scene.camera'
 import ArrowHelper from '../ArrowHelper/ArrowHelper.component'
 
 class Scene extends Component {
@@ -82,7 +82,7 @@ class Scene extends Component {
           clearColor={0x95a5a6}>
           <module ref='mouseInput' descriptor={MouseInput} />
           <scene ref='scene'>
-            <Cameras
+            <Camera
               onRef={cam => (this.camera = cam)}
               container={this.refs.container}
               width={width}

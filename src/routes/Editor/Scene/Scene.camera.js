@@ -11,7 +11,7 @@ const OrbitControls = OB(THREE)
 @connect((store) => ({
   drag: store.editor.drag,
 }))
-class Cameras extends Component {
+class Camera extends Component {
   static propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
@@ -63,4 +63,4 @@ class Cameras extends Component {
     )
   }
 }
-export default wrapStore(Cameras)
+export default wrapStore(Camera)

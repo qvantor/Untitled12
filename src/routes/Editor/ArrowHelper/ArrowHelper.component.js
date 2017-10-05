@@ -18,7 +18,7 @@ const colors = {
 }
 
 @connect((store) => ({
-  selected: store.objects.geometries.find(item => item.id === store.editor.selected),
+  selected: store.objects.geometries.find(item => item.id === store.editor.selected.id),
   drag: store.editor.drag,
 }), { setDrag, editGeometry })
 class ArrowHelper extends Component {
