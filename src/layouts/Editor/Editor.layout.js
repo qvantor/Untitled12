@@ -7,9 +7,10 @@ import PositionEditor from 'components/PositionEditor/PositionEditor.component'
 import RotationEditor from 'components/RotationEditor/RotationEditor.component'
 import ScaleEditor from 'components/ScaleEditor/ScaleEditor.component'
 import GeometriesEditor from 'components/GeometriesEditor/GeometriesEditor.component'
+import ToolSelector from 'components/ToolSelector/ToolSelector.component'
 
 import { Layout } from 'antd'
-const { Header, Sider } = Layout
+const { Header, Sider, Footer } = Layout
 
 export const EditorLayout = ({ children }) =>
   <HotKeys>
@@ -29,7 +30,10 @@ export const EditorLayout = ({ children }) =>
           </div>
         </Sider>
       </Layout>
-    </Layout >
+      <Footer>
+        <ToolSelector />
+      </Footer>
+    </Layout>
   </HotKeys>
 
 EditorLayout.propTypes = {

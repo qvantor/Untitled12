@@ -6,7 +6,8 @@ import MouseInput from 'utils/MouseInput'
 
 import SceneElements from './Scene.elements'
 import Camera from './Scene.camera'
-import ArrowHelper from '../ArrowHelper/ArrowHelper.component'
+import PositionHelper from '../PositionHelper/PositionHelper.component'
+import ScaleHelper from '../ScaleHelper/ScaleHelper.component'
 
 class Scene extends Component {
   static propTypes = {
@@ -87,13 +88,15 @@ class Scene extends Component {
               container={this.refs.container}
               width={width}
               height={height} />
-            <ArrowHelper
+            <PositionHelper
               camera={this.camera}
               mouseInput={this.refs.mouseInput}
-              onCreate={o => this.onMounted(o, 'arrow')} />
-            <SceneElements
-              id={1}
-              onCreate={o => this.onMounted(o, 'geom')} />
+              onCreate={o => this.onMounted(o, 'positionHelper')} />
+            <ScaleHelper
+              camera={this.camera}
+              mouseInput={this.refs.mouseInput}
+              onCreate={o => this.onMounted(o, 'scaleHelper')} />
+            <SceneElements id={1} onCreate={o => this.onMounted(o, 'geom')} />
           </scene>
         </React3>
       </div>)

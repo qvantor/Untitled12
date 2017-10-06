@@ -23,7 +23,6 @@ export function editGeometry (id, params) {
 
 export function removeSelected () {
   return (dispatch, getState) => {
-    console.log('removeSelected')
     const { editor: { selected } } = getState()
     if (!selected.id) return
     dispatch({ type: constants.OBJECT_SELECTED_REMOVED, payload: selected })
