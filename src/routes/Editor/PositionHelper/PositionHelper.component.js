@@ -29,22 +29,8 @@ class PositionHelper extends Component {
     tool: PropTypes.string,
     setInteract: PropTypes.func,
     editGeometry: PropTypes.func,
-    onCreate: PropTypes.func.isRequired,
     camera: PropTypes.instanceOf(THREE.Camera),
     mouseInput: PropTypes.instanceOf(MouseInput),
-  }
-
-  componentDidUpdate () {
-    this.props.onCreate(
-      Object.keys(this.refs)
-        .map(key => this.refs[key].children)
-        .reduce((sum, item) => [...sum, ...item], [])
-        .map(item => {
-          item.material.depthTest = false
-          return item
-        })
-        .filter(item => item.type === 'Mesh'),
-    )
   }
 
   onMouseDown = (event, intersection, name) => {

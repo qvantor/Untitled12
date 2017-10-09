@@ -29,22 +29,12 @@ class ScaleHelper extends Component {
     selected: PropTypes.object,
     interact: PropTypes.string,
     tool: PropTypes.string,
-    onCreate: PropTypes.func.isRequired,
     setInteract: PropTypes.func,
     editGeometry: PropTypes.func,
     camera: PropTypes.instanceOf(THREE.Camera),
     mouseInput: PropTypes.instanceOf(MouseInput),
   }
   elements = {}
-
-  componentDidUpdate () {
-    this.props.onCreate(this.elements)
-  }
-
-  onCreate (el) {
-    if (!el) return
-    this.elements = [...this.elements, el]
-  }
 
   onMouseDown = (event, intersection, name) => {
     const { selected: { position, scale }, camera, setInteract } = this.props
@@ -111,7 +101,6 @@ class ScaleHelper extends Component {
         {arrows.map(item =>
           <ScaleArrow
             key={item.key}
-            onCreate={el => this.onCreate(el, item.key)}
             onMouseDown={(e, i) => this.onMouseDown(e, i, item.key)}
             color={interact === item.key ? hoverColor : colors[item.key]}
             hoverColor={hoverColor}

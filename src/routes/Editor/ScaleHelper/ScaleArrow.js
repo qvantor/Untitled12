@@ -10,13 +10,8 @@ class ScaleArrow extends Component {
     origin: PropTypes.instanceOf(THREE.Vector3).isRequired,
     dir: PropTypes.instanceOf(THREE.Vector3).isRequired,
     length: PropTypes.number.isRequired,
-    onCreate: PropTypes.func.isRequired,
     onMouseDown: PropTypes.func,
   }
-
-  // componentDidUpdate () {
-  //   this.refs.el.children.forEach(item => (item.material.depthTest = false))
-  // }
 
   calcQuaternion (dir) {
     const quaternion = new THREE.Quaternion()
@@ -61,7 +56,6 @@ class ScaleArrow extends Component {
           <lineBasicMaterial color={color} depthTest={false} />
         </line>
         <mesh
-          ref={box => this.props.onCreate(box)}
           position={new THREE.Vector3(0, length - cubeSize, 0)}
           scale={new THREE.Vector3(cubeSize, cubeSize, cubeSize)}>
           <boxGeometry width={1} height={1} depth={1} />
