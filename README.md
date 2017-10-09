@@ -2,13 +2,13 @@
 - [x] Add rotation
 - [x] Add scale
 - [x] Add simple hotkeys
-- [ ] Add scale tool
+- [x] Add scale tool
 - [ ] Add rotation tool
 - [ ] Add lights
 - [ ] Add cameras
 - [ ] Add lights helpers
 - [ ] Add cameras helpers
-- [ ] Add class to optimization ObjectsToIntersect for MouseInput
+- [ ] Add prop to 3dObject: MouseEvents
 
 
 #### Middle term

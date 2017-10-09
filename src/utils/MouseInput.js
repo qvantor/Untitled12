@@ -235,15 +235,19 @@ class MouseInput extends Module {
 
   _getIntersections (mouseCoords) {
     const relativeMouseCoords = this._getRelativeMouseCoords(mouseCoords)
+    let intersections = []
 
     this._raycaster.setFromCamera(relativeMouseCoords, this._camera)
 
     if (this._restrictIntersections) {
-      return this._raycaster.intersectObjects(this._objectsToIntersect,
+      intersections = this._raycaster.intersectObjects(this._objectsToIntersect,
         this._restrictedIntersectionRecursive)
+    } else {
+      intersections = this._raycaster.intersectObject(this._scene, true)
     }
+    // console.log(intersections)
 
-    return this._raycaster.intersectObject(this._scene, true)
+    return intersections
   }
 
   // noinspection JSUnusedGlobalSymbols
@@ -366,9 +370,9 @@ class MouseInput extends Module {
   _getRelativeMouseCoords (screenMouseCoords) {
     const containerRect = this._containerRect
 
-    const relativeMouseCoords = screenMouseCoords.clone().
-      sub(tempVector2.set(containerRect.left, containerRect.top)).
-      divide(tempVector2.set(containerRect.width, containerRect.height))
+    const relativeMouseCoords = screenMouseCoords.clone()
+      .sub(tempVector2.set(containerRect.left, containerRect.top))
+      .divide(tempVector2.set(containerRect.width, containerRect.height))
 
     // mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     // mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;

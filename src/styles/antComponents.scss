@@ -1,0 +1,26 @@
+.ant-btn {
+  &.ant-btn-background-ghost {
+    border-radius: 0;
+    border-color: #7f8c8d;
+    color: #ecf0f1;
+
+    &.ant-btn-primary {
+      border: rgba(52, 152, 219, 1.0);
+      background: rgba(52, 152, 219, .9) !important;
+
+      &:hover, &:focus {
+        background: rgba(52, 152, 219, 1) !important;
+        color: #fff;
+      }
+    }
+    &:hover {
+      background: rgba(255, 255, 255, .2) !important;
+    }
+  }
+}
+
+.ant-layout-footer {
+  padding: 10px;
+  background: #404040;
+  color: #fff;
+}

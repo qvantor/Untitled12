@@ -9,14 +9,14 @@ import OB from 'three-orbit-controls'
 const OrbitControls = OB(THREE)
 
 @connect((store) => ({
-  drag: store.editor.drag,
+  interact: store.editor.interact,
 }))
 class Camera extends Component {
   static propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
     onRef: PropTypes.func.isRequired,
-    drag: PropTypes.string,
+    interact: PropTypes.string,
     container: PropTypes.instanceOf(Element),
   }
 
@@ -38,7 +38,7 @@ class Camera extends Component {
       this.controls = new OrbitControls(this.refs.camera, this.props.container)
       // this.controls.addEventListener('change', e => console.log(this.refs.camera.position))
     }
-    this.controls.enabled = !this.props.drag
+    this.controls.enabled = !this.props.interact
   }
 
   setPosition (position) {

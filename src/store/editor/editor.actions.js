@@ -5,6 +5,10 @@ export function selectGeometry (id = null, type = null) {
     { type: constants.EDITOR_GEOMETRY_SELECTED, payload: { id, type } })
 }
 
-export function setDrag (payload) {
-  return dispatch => dispatch({ type: constants.EDITOR_DRAG_SETTED, payload })
+export function setInteract (payload) {
+  return dispatch => dispatch({ type: constants.EDITOR_INTERACT_SETTED, payload })
+}
+
+export function setTool (payload) {
+  return dispatch => dispatch({ type: constants.EDITOR_TOOL_SETTED, payload })
 }

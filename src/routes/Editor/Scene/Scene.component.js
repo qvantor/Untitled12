@@ -6,7 +6,8 @@ import MouseInput from 'utils/MouseInput'
 
 import SceneElements from './Scene.elements'
 import Camera from './Scene.camera'
-import ArrowHelper from '../ArrowHelper/ArrowHelper.component'
+import PositionHelper from '../PositionHelper/PositionHelper.component'
+import ScaleHelper from '../ScaleHelper/ScaleHelper.component'
 
 class Scene extends Component {
   static propTypes = {
@@ -32,8 +33,8 @@ class Scene extends Component {
   }
 
   onMounted = (objects, key) => {
-    this.objects[key] = objects
-    this.restrictIntersections()
+    // this.objects[key] = objects
+    // this.restrictIntersections()
   }
 
   componentDidUpdate () {
@@ -63,9 +64,9 @@ class Scene extends Component {
   }
 
   restrictIntersections () {
-    this.objectsArray = Object.keys(this.objects)
-      .reduce((accum, key) => [...accum, ...this.objects[key]], [])
-    this.refs.mouseInput.restrictIntersections(this.objectsArray)
+    // this.objectsArray = Object.keys(this.objects)
+    //   .reduce((accum, key) => [...accum, ...this.objects[key]], [])
+    this.refs.mouseInput.restrictIntersections(this.refs.scene.children, true)
   }
 
   render () {
@@ -87,13 +88,9 @@ class Scene extends Component {
               container={this.refs.container}
               width={width}
               height={height} />
-            <ArrowHelper
-              camera={this.camera}
-              mouseInput={this.refs.mouseInput}
-              onCreate={o => this.onMounted(o, 'arrow')} />
-            <SceneElements
-              id={1}
-              onCreate={o => this.onMounted(o, 'geom')} />
+            <PositionHelper camera={this.camera} mouseInput={this.refs.mouseInput} />
+            <ScaleHelper camera={this.camera} mouseInput={this.refs.mouseInput} />
+            <SceneElements id={1} />
           </scene>
         </React3>
       </div>)

@@ -5,5 +5,6 @@ export default Immutable({
     id: null,
     type: null,
   },
-  drag: null,
+  tool: 'translate',
+  interact: null,
 })
