@@ -38,7 +38,7 @@ class BoxGeometry extends Component {
           {...GeometryTypes[type]
             .map(item => ({ [item.key]: params[item.pos] }))
             .reduce((acum, item) => Object.assign({}, acum, item), {})} />
-        <meshLambertMaterial color={0x34495e} side={THREE.DoubleSide} />
+        <meshStandardMaterial color={0x34495e} side={THREE.DoubleSide} />
       </mesh>
     )
   }

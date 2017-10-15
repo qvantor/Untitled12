@@ -17,10 +17,12 @@ class LightsCreator extends Component {
     const { addObject } = this.props
     const buttons = [
       { key: 'AmbientLight', name: 'Ambient light', },
-      { key: 'DirectionalLight', name: 'Directional light', }]
+      { key: 'DirectionalLight', name: 'Directional light', },
+      { key: 'PointLight', name: 'Point light', },
+    ]
 
     return (
-      <div>
+      <div className='button-panel'>
         <h5>Lights</h5>
         {buttons.map((item, i) =>
           <Button

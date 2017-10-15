@@ -22,8 +22,8 @@ class DirectionalLight extends Component {
     return (
       <group>
         <mesh position={lookAtVector}>
-          <sphereGeometry radius={0.2} />
-          <meshBasicMaterial color={color} />
+          <sphereGeometry radius={0.2} widthSegments={4} heightSegments={4} />
+          <meshBasicMaterial color={color} wireframe />
         </mesh>
         <line>
           <geometry vertices={[position, lookAtVector]} />

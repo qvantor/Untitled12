@@ -5,13 +5,13 @@ import * as GeometryTypes from 'utils/objects/Geometries.types'
 import * as LightsTypes from 'utils/objects/Lights.types'
 import { editObject } from 'store/objects/objects.actions'
 
-import InputNumber from 'components/InputNumber/InputNumber.component'
-import PositionForm from 'components/PositionEditor/Position.form'
+import InputNumber from 'components/Inputs/InputNumber.component'
+import InputColor from 'components/Inputs/InputColor.component'
 
 @connect((store) => ({
   selected: store.objects[store.editor.selected.type].find(item => item.id === store.editor.selected.id),
 }), { editObject })
-class GeometriesEditor extends Component {
+class ObjectsEditor extends Component {
   static propTypes = {
     selected: PropTypes.object,
     editObject: PropTypes.func,
@@ -34,10 +34,10 @@ class GeometriesEditor extends Component {
         {objectTypes[type]
           .map((item, i) =>
             <div key={i} className='row'>
-              <div className='col-md-6'>
+              <div className='col-md-7'>
                 {item.name}
               </div>
-              <div className='col-md-6'>
+              <div className='col-md-5'>
                 {item.type.name === 'number' &&
                 <InputNumber
                   integer={item.type.integer}
@@ -45,6 +45,10 @@ class GeometriesEditor extends Component {
                   value={params[item.pos]}
                   min={item.type.min}
                   max={item.type.max} />}
+                {item.type.name === 'color' &&
+                <InputColor
+                  value={params[item.pos]}
+                  onChange={val => this.editObject(val, item.pos)} />}
               </div>
             </div>,
           )}
@@ -53,4 +57,4 @@ class GeometriesEditor extends Component {
   }
 }
 
-export default GeometriesEditor
+export default ObjectsEditor

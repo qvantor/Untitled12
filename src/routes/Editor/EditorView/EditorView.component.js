@@ -35,7 +35,7 @@ class EditorView extends Component {
   render () {
     const { height, width } = this.state
     return (
-      <div ref='editor' style={{ height: '100%' }}>
+      <div ref='editor' style={{ height: '100%' }} onClick={e => this.refs.editor.focus()}>
         <Scene id={1} width={width} height={height} />
       </div>)
   }

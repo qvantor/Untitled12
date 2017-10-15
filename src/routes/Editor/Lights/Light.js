@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import * as THREE from 'three'
 import AmbientLight from './AmbientLight.component'
 import DirectionalLight from './DirectionalLight.component'
+import PointLight from './PointLight.component'
 import * as LightsTypes from 'utils/objects/Lights.types'
 import { selectGeometry } from 'store/editor/editor.actions'
 
@@ -22,9 +23,9 @@ class Light extends Component {
   click = (e, item) => this.props.selectGeometry(this.props.item.id, 'lights')
 
   render () {
-    const objects = { AmbientLight, DirectionalLight }
+    const lights = { AmbientLight, DirectionalLight, PointLight }
     const { item: { id, position, type, params } } = this.props
-    const TagName = objects[type]
+    const TagName = lights[type]
 
     return (
       <group

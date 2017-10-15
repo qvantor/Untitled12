@@ -2,9 +2,11 @@ const position = [0, 0, 0]
 const rotation = [0, 0, 0]
 const scale = [1, 1, 1]
 
+const color = '#00ffff'
+
 export const AmbientLight = {
   type: 'AmbientLight',
-  params: ['#ffffff', 1],
+  params: [color, 1],
   position,
   rotation,
   scale,
@@ -12,7 +14,15 @@ export const AmbientLight = {
 
 export const DirectionalLight = {
   type: 'DirectionalLight',
-  params: ['#ffffff', 1, [0, 0, 0]],
+  params: [color, 1],
+  position,
+  rotation,
+  scale,
+}
+
+export const PointLight = {
+  type: 'PointLight',
+  params: [color, 1, 0, 1],
   position,
   rotation,
   scale,

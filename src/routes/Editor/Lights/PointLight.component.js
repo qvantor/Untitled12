@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as THREE from 'three'
 
-class AmbientLight extends Component {
+class PointLight extends Component {
   static propTypes = {
     color: PropTypes.string.isRequired,
     intensity: PropTypes.number.isRequired,
+    distance: PropTypes.number.isRequired,
+    decay: PropTypes.number.isRequired,
     position: PropTypes.instanceOf(THREE.Vector3).isRequired,
   }
 
   render () {
-    const { color, intensity, position } = this.props
+    const { color, intensity, position, distance, decay } = this.props
 
     return (
       <group position={position}>
@@ -18,10 +20,10 @@ class AmbientLight extends Component {
           <sphereGeometry radius={0.5} widthSegments={4} heightSegments={4} />
           <meshBasicMaterial color={color} wireframe />
         </mesh>
-        <ambientLight color={color} intensity={intensity} />
+        <pointLight color={color} intensity={intensity} distance={distance} decay={decay} />
       </group>
     )
   }
 }
 
-export default AmbientLight
+export default PointLight

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import InputNumber from 'components/InputNumber/InputNumber.component'
+import InputNumber from 'components/Inputs/InputNumber.component'
 import { MAX_SAFE_INTEGER } from 'utils/objects/Params.types'
 
 import { editObject } from 'store/objects/objects.actions'
