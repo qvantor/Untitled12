@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import * as GeometryTypes from 'utils/Geometries/Geometries.types'
+import * as GeometryTypes from 'utils/objects/Geometries.types'
 
 import { editGeometry } from 'store/objects/objects.actions'
 import InputNumber from 'components/InputNumber/InputNumber.component'

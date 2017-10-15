@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import InputNumber from 'components/InputNumber/InputNumber.component'
-import { MAX_SAFE_INTEGER } from 'utils/Geometries/Geometries.types'
+import { MAX_SAFE_INTEGER } from 'utils/objects/Params.types'
 
 import { editGeometry } from 'store/objects/objects.actions'
 

@@ -18,7 +18,7 @@ const colors = {
 }
 
 @connect((store) => ({
-  selected: store.objects.geometries.find(item => item.id === store.editor.selected.id),
+  selected: store.objects[store.editor.selected.type].find(item => item.id === store.editor.selected.id),
   interact: store.editor.interact,
   tool: store.editor.tool,
 }), { setInteract, editGeometry })

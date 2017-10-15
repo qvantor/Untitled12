@@ -8,8 +8,8 @@
 - [ ] Add cameras
 - [ ] Add lights helpers
 - [ ] Add cameras helpers
-- [ ] Add prop to 3dObject: MouseEvents
-
+- [ ] Add scene objects viewport
+ 
 
 #### Middle term
 - [ ] Add multicameras view
@@ -17,3 +17,4 @@
 
 #### Fixes
 - [ ] MouseInput wrong intersections order
+- [ ] mouseLeave/MouseEnter on parents

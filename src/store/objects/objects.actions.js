@@ -3,22 +3,25 @@ import IdGenerator from 'utils/IdGenerator'
 
 import { selectGeometry }  from '../editor/editor.actions'
 
-export function addGeometry (box) {
+export function addObject (object, type) {
   return (dispatch, getState) => {
     const { scenes } = getState()
     const id = IdGenerator()
     dispatch({
-      type: constants.OBJECTS_GEOMETRY_ADDED,
-      payload: Object.assign(box, { id, scene: scenes.active }),
+      type: constants.OBJECTS_ADDED,
+      payload: { object: Object.assign(object, { id, scene: scenes.active }), type },
     })
   }
 }
 
 export function editGeometry (id, params) {
-  return dispatch => dispatch({
-    type: constants.OBJECTS_GEOMETRY_EDITED,
-    payload: { id, params },
-  })
+  return (dispatch, getState) => {
+    const type = getState().editor.selected.type
+    dispatch({
+      type: constants.OBJECTS_EDITED,
+      payload: { id, type, params },
+    })
+  }
 }
 
 export function removeSelected () {

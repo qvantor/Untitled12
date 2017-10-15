@@ -1,11 +1,11 @@
+@import '~antd/dist/antd.css';
+@import '~bootstrap/scss/bootstrap.scss';
 @import 'base';
 @import 'mixins';
 @import 'modificators';
 @import 'panels';
 @import 'components';
 @import 'antComponents';
-@import '~bootstrap/scss/bootstrap.scss';
-@import '~antd/dist/antd.css';
 
 // Some best-practice CSS that's useful for most apps
 // Just remove them if they're not what you want

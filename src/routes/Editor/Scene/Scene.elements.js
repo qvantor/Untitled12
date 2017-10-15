@@ -5,17 +5,17 @@ import wrapStore from 'utils/wrapStore'
 
 import Geometry from '../Geometry/Geometry'
 
-@connect((store) => ({ list: store.objects }))
+@connect((store) => ({ geometries: store.objects.geometries }))
 class SceneElements extends Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
-    list: PropTypes.object,
+    geometries: PropTypes.object,
   }
 
   render () {
-    const { id, list } = this.props
+    const { id, geometries } = this.props
 
-    const geometryList = list.geometries.filter(item => item.scene === id)
+    const geometryList = geometries.filter(item => item.scene === id)
     return (
       <group>
         {geometryList.map((item, index) => <Geometry item={item} key={item.id} />)}

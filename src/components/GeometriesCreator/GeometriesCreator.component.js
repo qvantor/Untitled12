@@ -5,15 +5,15 @@ import { Button } from 'antd'
 
 import * as Geometries from './GeometriesCreator.initial'
 
-import { addGeometry } from 'store/objects/objects.actions'
+import { addObject } from 'store/objects/objects.actions'
 
 class GeometriesCreator extends Component {
   static propTypes = {
-    addGeometry: PropTypes.func.isRequired,
+    addObject: PropTypes.func.isRequired,
   }
 
   render () {
-    const { addGeometry } = this.props
+    const { addObject } = this.props
 
     const buttons = [
       { key: 'plane', name: 'Plane' },
@@ -31,7 +31,7 @@ class GeometriesCreator extends Component {
           <Button
             key={i}
             size='small'
-            onClick={e => addGeometry(Geometries[item.key])}
+            onClick={e => addObject(Geometries[item.key], 'geometries')}
             ghost>{item.name}
           </Button>,
         )}
@@ -42,4 +42,4 @@ class GeometriesCreator extends Component {
 const mapStateToProps = state => {
   return {}
 }
-export default connect(mapStateToProps, { addGeometry })(GeometriesCreator)
+export default connect(mapStateToProps, { addObject })(GeometriesCreator)

@@ -3,13 +3,13 @@ import Model from './objects.model'
 
 export default function objects (state = Model, { type, payload }) {
   switch (type) {
-    case constants.OBJECTS_GEOMETRY_ADDED:
-      return state.merge({ geometries: [...state.geometries, ...[payload]] })
+    case constants.OBJECTS_ADDED:
+      return state.merge({ [payload.type]: [...state[payload.type], ...[payload.object]] })
 
-    case constants.OBJECTS_GEOMETRY_EDITED:
+    case constants.OBJECTS_EDITED:
       return state.merge({
-        geometries: state.geometries.update(
-          state.geometries.findIndex(item => item.id === payload.id),
+        [payload.type]: state[payload.type].update(
+          state[payload.type].findIndex(item => item.id === payload.id),
           item => Object.assign({}, item, payload.params)),
       }, { deep: true })
 
