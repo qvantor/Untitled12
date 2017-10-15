@@ -4,20 +4,20 @@ import { connect } from 'react-redux'
 import InputNumber from 'components/InputNumber/InputNumber.component'
 import { MAX_SAFE_INTEGER } from 'utils/objects/Params.types'
 
-import { editGeometry } from 'store/objects/objects.actions'
+import { editObject } from 'store/objects/objects.actions'
 
 @connect((store) => ({
   selected: store.objects.geometries.find(item => item.id === store.editor.selected.id),
-}), { editGeometry })
+}), { editObject })
 class ScaleEditor extends Component {
   static propTypes = {
     selected: PropTypes.object,
-    editGeometry: PropTypes.func,
+    editObject: PropTypes.func,
   }
 
   change (val, i) {
-    const { selected, editGeometry } = this.props
-    editGeometry(selected.id, { scale: selected.scale.update(i, item => val) })
+    const { selected, editObject } = this.props
+    editObject(selected.id, { scale: selected.scale.update(i, item => val) })
   }
 
   render () {

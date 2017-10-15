@@ -9,3 +9,11 @@ export const AmbientLight = {
   rotation,
   scale,
 }
+
+export const DirectionalLight = {
+  type: 'DirectionalLight',
+  params: ['#ffffff', 1, [0, 0, 0]],
+  position,
+  rotation,
+  scale,
+}

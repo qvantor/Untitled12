@@ -14,7 +14,7 @@ export function addObject (object, type) {
   }
 }
 
-export function editGeometry (id, params) {
+export function editObject (id, params) {
   return (dispatch, getState) => {
     const type = getState().editor.selected.type
     dispatch({

@@ -9,7 +9,7 @@ const scale = [1, 1, 1]
 
 export const box = {
   type: 'boxGeometry',
-  geometry: [1, 1, 1, 1, 1, 1],
+  params: [1, 1, 1, 1, 1, 1],
   position,
   rotation,
   scale,
@@ -18,7 +18,7 @@ export const box = {
 
 export const cylinder = {
   type: 'cylinderGeometry',
-  geometry: [1, 1, 1, 8, 8, 0, 6.3],
+  params: [1, 1, 1, 8, 8, 0, 6.3],
   position,
   rotation,
   scale,
@@ -27,7 +27,7 @@ export const cylinder = {
 
 export const sphere = {
   type: 'sphereGeometry',
-  geometry: [1, 8, 8, 0, 6.3, 0, 3.1],
+  params: [1, 8, 8, 0, 6.3, 0, 3.1],
   position,
   rotation,
   scale,
@@ -36,7 +36,7 @@ export const sphere = {
 
 export const torus = {
   type: 'torusGeometry',
-  geometry: [1, 0.5, 8, 6, 6.3],
+  params: [1, 0.5, 8, 6, 6.3],
   position,
   rotation,
   scale,
@@ -45,7 +45,7 @@ export const torus = {
 
 export const plane = {
   type: 'planeGeometry',
-  geometry: [1, 1, 1, 1],
+  params: [1, 1, 1, 1],
   position,
   rotation,
   scale,
@@ -54,7 +54,7 @@ export const plane = {
 
 export const circle = {
   type: 'circleGeometry',
-  geometry: [1, 8, 0, 6.3],
+  params: [1, 8, 0, 6.3],
   position,
   rotation,
   scale,

@@ -6,3 +6,4 @@ export const usualTheta = { name: 'number', min: 0, max: 6 }
 export const usualThetaLength = { name: 'number', min: 0, max: 6.3 }
 
 export const color = { name: 'color', format: 'numeric' }
+export const position = { name: 'position' }

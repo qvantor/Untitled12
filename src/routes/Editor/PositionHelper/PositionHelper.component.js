@@ -6,7 +6,7 @@ import * as THREE from 'three'
 import MouseInput from 'utils/MouseInput'
 
 import { setInteract } from 'store/editor/editor.actions'
-import { editGeometry } from 'store/objects/objects.actions'
+import { editObject } from 'store/objects/objects.actions'
 
 const dragPlane = new THREE.Plane()
 const backVector = new THREE.Vector3(0, 0, -1)
@@ -21,14 +21,14 @@ const colors = {
   selected: store.objects[store.editor.selected.type].find(item => item.id === store.editor.selected.id),
   interact: store.editor.interact,
   tool: store.editor.tool,
-}), { setInteract, editGeometry })
+}), { setInteract, editObject })
 class PositionHelper extends Component {
   static propTypes = {
     selected: PropTypes.object,
     interact: PropTypes.string,
     tool: PropTypes.string,
     setInteract: PropTypes.func,
-    editGeometry: PropTypes.func,
+    editObject: PropTypes.func,
     camera: PropTypes.instanceOf(THREE.Camera),
     mouseInput: PropTypes.instanceOf(MouseInput),
   }
@@ -52,7 +52,7 @@ class PositionHelper extends Component {
 
   onDocumentMouseMove = (event) => {
     event.preventDefault()
-    const { mouseInput, selected: { position }, editGeometry } = this.props
+    const { mouseInput, selected: { position }, editObject } = this.props
     const ray = mouseInput.getCameraRay(new THREE.Vector2(event.clientX, event.clientY))
 
     const intersection = dragPlane.intersectLine(new THREE.Line3(
@@ -60,7 +60,7 @@ class PositionHelper extends Component {
       ray.origin.clone().add(ray.direction.clone().multiplyScalar(10000)),
     ))
     if (intersection) {
-      editGeometry(this.props.selected.id, {
+      editObject(this.props.selected.id, {
         position: [
           this.name === 'x' ? intersection.sub(this.offset).x : position[0],
           this.name === 'y' ? intersection.sub(this.offset).y : position[1],

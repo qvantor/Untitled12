@@ -22,7 +22,7 @@ class BoxGeometry extends Component {
   click = (e, { object }) => this.props.selectGeometry(object.name, 'geometries')
 
   render () {
-    const { item: { id, position, rotation, scale, geometry, type } } = this.props
+    const { item: { id, position, rotation, scale, params, type } } = this.props
     const TagName = type
     return (
       <mesh
@@ -36,7 +36,7 @@ class BoxGeometry extends Component {
         scale={new THREE.Vector3(scale[0], scale[1], scale[2])}>
         <TagName
           {...GeometryTypes[type]
-            .map(item => ({ [item.key]: geometry[item.pos] }))
+            .map(item => ({ [item.key]: params[item.pos] }))
             .reduce((acum, item) => Object.assign({}, acum, item), {})} />
         <meshLambertMaterial color={0x34495e} side={THREE.DoubleSide} />
       </mesh>

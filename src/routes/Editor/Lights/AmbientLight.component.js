@@ -6,13 +6,14 @@ class AmbientLight extends Component {
   static propTypes = {
     color: PropTypes.string.isRequired,
     intensity: PropTypes.number.isRequired,
+    position: PropTypes.instanceOf(THREE.Vector3).isRequired,
   }
 
   render () {
-    const { color, intensity } = this.props
+    const { color, intensity, position } = this.props
 
     return (
-      <group>
+      <group position={position}>
         <mesh>
           <sphereGeometry radius={0.5} />
           <meshBasicMaterial side={THREE.DoubleSide} />

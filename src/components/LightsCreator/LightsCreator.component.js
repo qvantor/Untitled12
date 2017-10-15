@@ -15,7 +15,9 @@ class LightsCreator extends Component {
 
   render () {
     const { addObject } = this.props
-    const buttons = [{ key: 'AmbientLight', name: 'Ambient Light' }]
+    const buttons = [
+      { key: 'AmbientLight', name: 'Ambient light', },
+      { key: 'DirectionalLight', name: 'Directional light', }]
 
     return (
       <div>
