@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import InputNumber from 'components/InputNumber/InputNumber.component'
-import { MAX_SAFE_INTEGER } from 'utils/Geometries/Geometries.types'
 
-import { editGeometry } from 'store/objects/objects.actions'
+import { editObject } from 'store/objects/objects.actions'
 
-@connect((store) => ({ selected: store.objects.geometries.find(item => item.id === store.editor.selected.id), }),
-  { editGeometry })
+import PositionForm from './Position.form'
+
+@connect((store) => ({
+  selected: store.objects[store.editor.selected.type].find(item => item.id === store.editor.selected.id),
+}), { editObject })
 class PositionEditor extends Component {
   static propTypes = {
     selected: PropTypes.object,
-    editGeometry: PropTypes.func,
+    editObject: PropTypes.func,
   }
 
-  change (val, i) {
-    const { selected, editGeometry } = this.props
-    editGeometry(selected.id, { position: selected.position.update(i, item => val) })
+  change = (newPos) => {
+    const { selected, editObject } = this.props
+    editObject(selected.id, { position: newPos })
   }
 
   render () {
@@ -27,16 +28,7 @@ class PositionEditor extends Component {
     return (
       <div className='panel'>
         <h5>Position</h5>
-        <div className='row'>
-          {position.map((pos, i) =>
-            <div className='col-md-4' key={i}>
-              <InputNumber
-                min={-MAX_SAFE_INTEGER}
-                max={MAX_SAFE_INTEGER}
-                value={pos}
-                onChange={val => this.change(val, i)} />
-            </div>)}
-        </div>
+        <PositionForm position={position} change={this.change} />
       </div>
     )
   }

@@ -1,3 +1,8 @@
+.sider {
+  overflow-x: auto;
+  max-height: calc(100vh - 62px);
+}
+
 .panels {
   color: #95a5a6;
   h5 {

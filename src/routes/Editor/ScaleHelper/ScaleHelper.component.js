@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import * as THREE from 'three'
 import MouseInput from 'utils/MouseInput'
 
-import { editGeometry } from 'store/objects/objects.actions'
+import { editObject } from 'store/objects/objects.actions'
 import { setInteract } from 'store/editor/editor.actions'
 
 import ScaleArrow from './ScaleArrow'
@@ -23,14 +23,14 @@ const backVector = new THREE.Vector3(0, 0, -1)
   selected: store.objects.geometries.find(item => item.id === store.editor.selected.id),
   interact: store.editor.interact,
   tool: store.editor.tool,
-}), { setInteract, editGeometry })
+}), { setInteract, editObject })
 class ScaleHelper extends Component {
   static propTypes = {
     selected: PropTypes.object,
     interact: PropTypes.string,
     tool: PropTypes.string,
     setInteract: PropTypes.func,
-    editGeometry: PropTypes.func,
+    editObject: PropTypes.func,
     camera: PropTypes.instanceOf(THREE.Camera),
     mouseInput: PropTypes.instanceOf(MouseInput),
   }
@@ -56,7 +56,7 @@ class ScaleHelper extends Component {
 
   onDocumentMouseMove = (event) => {
     event.preventDefault()
-    const { mouseInput, selected: { scale, position }, editGeometry } = this.props
+    const { mouseInput, selected: { scale, position }, editObject } = this.props
     const ray = mouseInput.getCameraRay(new THREE.Vector2(event.clientX, event.clientY))
 
     const intersection = dragPlane.intersectLine(new THREE.Line3(
@@ -64,7 +64,7 @@ class ScaleHelper extends Component {
       ray.origin.clone().add(ray.direction.clone().multiplyScalar(10000)),
     ))
     if (intersection) {
-      editGeometry(this.props.selected.id, {
+      editObject(this.props.selected.id, {
         scale: [
           this.name === 'x' ? intersection.sub(this.offset).x + this.initScale[0] - position[0] : scale[0],
           this.name === 'y' ? intersection.sub(this.offset).y + this.initScale[1] - position[1] : scale[1],

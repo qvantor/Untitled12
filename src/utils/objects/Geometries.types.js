@@ -1,9 +1,4 @@
-export const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991
-
-const usualNumber = { name: 'number', min: 0.001, max: MAX_SAFE_INTEGER }
-const usualSegments = { name: 'number', min: 1, max: 64, integer: true }
-const usualTheta = { name: 'number', min: 0, max: 6 }
-const usualThetaLength = { name: 'number', min: 0, max: 6.3 }
+import { usualNumber, usualSegments, usualTheta, usualThetaLength } from './Params.types'
 
 export const boxGeometry = [
   { name: 'Width', key: 'width', type: usualNumber, pos: 0 },

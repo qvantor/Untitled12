@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import wrapStore from 'utils/wrapStore'
 import { connect } from 'react-redux'
-import * as GeometryTypes from 'utils/Geometries/Geometries.types'
+import * as GeometryTypes from 'utils/objects/Geometries.types'
 
 import { selectGeometry } from 'store/editor/editor.actions'
 
@@ -22,7 +22,7 @@ class BoxGeometry extends Component {
   click = (e, { object }) => this.props.selectGeometry(object.name, 'geometries')
 
   render () {
-    const { item: { id, position, rotation, scale, geometry, type } } = this.props
+    const { item: { id, position, rotation, scale, params, type } } = this.props
     const TagName = type
     return (
       <mesh
@@ -33,14 +33,12 @@ class BoxGeometry extends Component {
           THREE.Math.degToRad(rotation[0]),
           THREE.Math.degToRad(rotation[1]),
           THREE.Math.degToRad(rotation[2]))}
-        scale={new THREE.Vector3(scale[0], scale[1], scale[2])}
-      >
+        scale={new THREE.Vector3(scale[0], scale[1], scale[2])}>
         <TagName
           {...GeometryTypes[type]
-            .map(item => ({ [item.key]: geometry[item.pos] }))
-            .reduce((acum, item) => Object.assign({}, acum, item), {})}
-        />
-        <meshBasicMaterial color={0x34495e} side={THREE.DoubleSide} wireframe />
+            .map(item => ({ [item.key]: params[item.pos] }))
+            .reduce((acum, item) => Object.assign({}, acum, item), {})} />
+        <meshStandardMaterial color={0x34495e} side={THREE.DoubleSide} />
       </mesh>
     )
   }

@@ -14,13 +14,20 @@
     margin: 0;
     padding: 0 5px 0 18px;
     color: #3498db;
-
-    &:focus {
-      outline: none;
-    }
   }
 
   &:focus {
     background: rgba(255, 255, 255, .1);
   }
+}
+
+input {
+  &:focus {
+    outline: none;
+  }
+}
+
+input[type="color"] {
+  background: none;
+  border: none;
 }

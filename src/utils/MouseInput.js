@@ -245,9 +245,11 @@ class MouseInput extends Module {
     } else {
       intersections = this._raycaster.intersectObject(this._scene, true)
     }
-    // console.log(intersections)
-
-    return intersections
+    if (intersections.length > 0) {
+      return [intersections[0]]
+    } else {
+      return []
+    }
   }
 
   // noinspection JSUnusedGlobalSymbols
@@ -299,11 +301,33 @@ class MouseInput extends Module {
     }
   }
 
+  //@todo don't dispatch mouseLeave/MouseEnter on parents, if same children
   _updateEnterLeave () {
     const intersections = this._getIntersections(this._mouse)
 
     const hoverMapToUpdate = {
       ...this._hoverObjectMap,
+    }
+
+    const mouseLeaveEvent = this._createSyntheticMouseEvent('mouseLeave', {
+      target: this._container,
+      clientX: this._mouse.x,
+      clientY: this._mouse.y,
+    })
+
+    // delete all unseen uuids in hover map
+    const unseenUUIDs = Object.keys(hoverMapToUpdate)
+
+    for (let i = 0; i < unseenUUIDs.length; ++i) {
+      const uuid = unseenUUIDs[i]
+
+      if (!(mouseLeaveEvent.isDefaultPrevented() ||
+        mouseLeaveEvent.isPropagationStopped())) {
+        this.dispatchEvent(this._hoverObjectMap[uuid].object,
+          'onMouseLeave', mouseLeaveEvent)
+      }
+
+      delete this._hoverObjectMap[uuid]
     }
 
     const mouseEnterEvent = this._createSyntheticMouseEvent('mouseEnter', {
@@ -343,27 +367,6 @@ class MouseInput extends Module {
 
       // we have found the first solid intersection, don't go further
       break
-    }
-
-    const mouseLeaveEvent = this._createSyntheticMouseEvent('mouseLeave', {
-      target: this._container,
-      clientX: this._mouse.x,
-      clientY: this._mouse.y,
-    })
-
-    // delete all unseen uuids in hover map
-    const unseenUUIDs = Object.keys(hoverMapToUpdate)
-
-    for (let i = 0; i < unseenUUIDs.length; ++i) {
-      const uuid = unseenUUIDs[i]
-
-      if (!(mouseLeaveEvent.isDefaultPrevented() ||
-        mouseLeaveEvent.isPropagationStopped())) {
-        this.dispatchEvent(this._hoverObjectMap[uuid].object,
-          'onMouseLeave', mouseLeaveEvent)
-      }
-
-      delete this._hoverObjectMap[uuid]
     }
   }
 

@@ -24,11 +24,15 @@ class Hotkeys extends Component {
     }
 
     return (
-      <HotKeys keyMap={keyMap} handlers={handlers} onKeyDown={e => {
-        if (e.metaKey || e.ctrlKey) {
-          e.preventDefault()
-        }
-      }}>
+      <HotKeys
+        ref='el'
+        keyMap={keyMap}
+        handlers={handlers}
+        onKeyDown={e => {
+          if (e.metaKey || e.ctrlKey) {
+            e.preventDefault()
+          }
+        }}>
         {children}
       </HotKeys>
     )
