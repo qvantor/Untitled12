@@ -33,6 +33,11 @@ class PositionHelper extends Component {
     mouseInput: PropTypes.instanceOf(MouseInput),
   }
 
+  componentDidUpdate () {
+    Object.keys(this.refs)
+      .forEach(key => this.refs[key].children.forEach(item => (item.material.depthTest = false)))
+  }
+
   onMouseDown = (event, intersection, name) => {
     const { selected: { position }, camera, setInteract } = this.props
 
