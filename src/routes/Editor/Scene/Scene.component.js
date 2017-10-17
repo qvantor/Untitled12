@@ -7,8 +7,7 @@ import HotKeys from 'components/HotKeys/HotKeys.component'
 
 import SceneElements from './Scene.elements'
 import Camera from './Scene.camera'
-import PositionHelper from '../PositionHelper/PositionHelper.component'
-import ScaleHelper from '../ScaleHelper/ScaleHelper.component'
+import Tools from '../Tools/Tools.component'
 import Lights from '../Lights/Lights.component'
 
 class Scene extends Component {
@@ -86,8 +85,7 @@ class Scene extends Component {
                 container={this.refs.container}
                 width={width}
                 height={height} />
-              <PositionHelper camera={this.camera} mouseInput={this.refs.mouseInput} />
-              <ScaleHelper camera={this.camera} mouseInput={this.refs.mouseInput} />
+              <Tools camera={this.camera} mouseInput={this.refs.mouseInput} />
               <SceneElements id={sceneId} />
             </scene>
           </React3>

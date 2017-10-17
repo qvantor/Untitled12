@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import wrapStore from 'utils/wrapStore'
+import { initialSize } from 'utils/objects/Params.types'
 
 import * as THREE from 'three'
 
@@ -21,7 +22,7 @@ class Camera extends Component {
   }
 
   state = {
-    cameraPosition: new THREE.Vector3(0, 0, 20),
+    cameraPosition: new THREE.Vector3(0, 0, initialSize * 5),
     cameraRotation: new THREE.Euler(),
   }
 
@@ -56,8 +57,8 @@ class Camera extends Component {
         name='mainCamera'
         fov={75}
         aspect={width / height}
-        near={0.3}
-        far={1000}
+        near={0.5}
+        far={10000}
         position={cameraPosition}
         rotation={cameraRotation} />
     )

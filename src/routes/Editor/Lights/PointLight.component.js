@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as THREE from 'three'
+import { initialSize } from 'utils/objects/Params.types'
 
 class PointLight extends Component {
   static propTypes = {
@@ -17,7 +18,7 @@ class PointLight extends Component {
     return (
       <group position={position}>
         <mesh>
-          <sphereGeometry radius={0.5} widthSegments={4} heightSegments={4} />
+          <sphereGeometry radius={initialSize * 0.5} widthSegments={4} heightSegments={4} />
           <meshBasicMaterial color={color} wireframe />
         </mesh>
         <pointLight color={color} intensity={intensity} distance={distance} decay={decay} />

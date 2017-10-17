@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import wrapStore from 'utils/wrapStore'
 import * as THREE from 'three'
 import MouseInput from 'utils/MouseInput'
-
-import { setInteract } from 'store/editor/editor.actions'
-import { editObject } from 'store/objects/objects.actions'
 
 const dragPlane = new THREE.Plane()
 const backVector = new THREE.Vector3(0, 0, -1)
@@ -17,20 +12,23 @@ const colors = {
   z: [new THREE.Color(0x0000ff), new THREE.Color(0xffff00)],
 }
 
-@connect((store) => ({
-  selected: store.objects[store.editor.selected.type].find(item => item.id === store.editor.selected.id),
-  interact: store.editor.interact,
-  tool: store.editor.tool,
-}), { setInteract, editObject })
 class PositionHelper extends Component {
   static propTypes = {
-    selected: PropTypes.object,
-    interact: PropTypes.string,
-    tool: PropTypes.string,
-    setInteract: PropTypes.func,
-    editObject: PropTypes.func,
-    camera: PropTypes.instanceOf(THREE.Camera),
-    mouseInput: PropTypes.instanceOf(MouseInput),
+    selected: PropTypes.object.isRequired,
+    interact: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool,
+    ]),
+    camera: PropTypes.instanceOf(THREE.Camera).isRequired,
+    mouseInput: PropTypes.instanceOf(MouseInput).isRequired,
+    setInteract: PropTypes.func.isRequired,
+    editObject: PropTypes.func.isRequired,
+    size: PropTypes.number.isRequired,
+  }
+
+  componentDidMount () {
+    Object.keys(this.refs)
+      .forEach(key => this.refs[key].children.forEach(item => (item.material.depthTest = false)))
   }
 
   onMouseDown = (event, intersection, name) => {
@@ -78,38 +76,28 @@ class PositionHelper extends Component {
   }
 
   render () {
-    const { selected, interact, tool } = this.props
-    if (!selected || tool !== 'translate') return null
-    const { position } = selected
+    const { interact, size } = this.props
+
+    const arrows = [
+      { key: 'x', dir: new THREE.Vector3(1, 0, 0), },
+      { key: 'y', dir: new THREE.Vector3(0, 1, 0), },
+      { key: 'z', dir: new THREE.Vector3(0, 0, 1), },
+    ]
 
     return (
-      <group position={new THREE.Vector3(position[0], position[1], position[2])}>
-        <arrowHelper
-          headWidth={0.2}
-          length={2}
-          ref='x'
-          onMouseDown={(e, i) => this.onMouseDown(e, i, 'x')}
-          color={colors['x'][interact === 'x' ? 1 : 0]}
-          origin={new THREE.Vector3(0, 0, 0)}
-          dir={new THREE.Vector3(1, 0, 0)} />
-        <arrowHelper
-          headWidth={0.2}
-          length={2}
-          ref='y'
-          onMouseDown={(e, i) => this.onMouseDown(e, i, 'y')}
-          color={colors['y'][interact === 'y' ? 1 : 0]}
-          origin={new THREE.Vector3(0, 0, 0)}
-          dir={new THREE.Vector3(0, 1, 0)} />
-        <arrowHelper
-          headWidth={0.2}
-          length={2}
-          ref='z'
-          onMouseDown={(e, i) => this.onMouseDown(e, i, 'z')}
-          color={colors['z'][interact === 'z' ? 1 : 0]}
-          origin={new THREE.Vector3(0, 0, 0)}
-          dir={new THREE.Vector3(0, 0, 1)} />
+      <group>
+        {arrows.map(item =>
+          <arrowHelper
+            key={item.key}
+            headWidth={size * 0.15}
+            length={size}
+            ref={item.key}
+            onMouseDown={(e, i) => this.onMouseDown(e, i, item.key)}
+            color={colors[item.key][interact === item.key ? 1 : 0]}
+            origin={new THREE.Vector3(0, 0, 0)}
+            dir={item.dir} />)}
       </group>
     )
   }
 }
-export default wrapStore(PositionHelper)
+export default PositionHelper

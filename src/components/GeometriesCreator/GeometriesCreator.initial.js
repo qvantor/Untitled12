@@ -1,3 +1,5 @@
+import { initialSize } from 'utils/objects/Params.types'
+
 const material = {
   type: 'meshBasicMaterial',
   color: 0x00ff00,
@@ -9,7 +11,7 @@ const scale = [1, 1, 1]
 
 export const box = {
   type: 'boxGeometry',
-  params: [1, 1, 1, 1, 1, 1],
+  params: [initialSize, initialSize, initialSize, 1, 1, 1],
   position,
   rotation,
   scale,
@@ -18,7 +20,7 @@ export const box = {
 
 export const cylinder = {
   type: 'cylinderGeometry',
-  params: [1, 1, 1, 8, 8, 0, 6.3],
+  params: [initialSize, initialSize, initialSize, 8, 8, 0, 6.3],
   position,
   rotation,
   scale,
@@ -27,7 +29,7 @@ export const cylinder = {
 
 export const sphere = {
   type: 'sphereGeometry',
-  params: [1, 8, 8, 0, 6.3, 0, 3.1],
+  params: [initialSize, 8, 8, 0, 6.3, 0, 3.1],
   position,
   rotation,
   scale,
@@ -36,7 +38,7 @@ export const sphere = {
 
 export const torus = {
   type: 'torusGeometry',
-  params: [1, 0.5, 8, 6, 6.3],
+  params: [initialSize, 10, 8, 6, 6.3],
   position,
   rotation,
   scale,
@@ -45,7 +47,7 @@ export const torus = {
 
 export const plane = {
   type: 'planeGeometry',
-  params: [1, 1, 1, 1],
+  params: [initialSize, initialSize, 1, 1],
   position,
   rotation,
   scale,
@@ -54,7 +56,7 @@ export const plane = {
 
 export const circle = {
   type: 'circleGeometry',
-  params: [1, 8, 0, 6.3],
+  params: [initialSize, 8, 0, 6.3],
   position,
   rotation,
   scale,

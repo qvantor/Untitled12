@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import wrapStore from 'utils/wrapStore'
 import PropTypes from 'prop-types'
 import * as THREE from 'three'
 import MouseInput from 'utils/MouseInput'
-
-import { editObject } from 'store/objects/objects.actions'
-import { setInteract } from 'store/editor/editor.actions'
 
 import ScaleArrow from './ScaleArrow'
 
@@ -19,22 +14,19 @@ const hoverColor = new THREE.Color(0xffff00)
 const dragPlane = new THREE.Plane()
 const backVector = new THREE.Vector3(0, 0, -1)
 
-@connect((store) => ({
-  selected: store.objects.geometries.find(item => item.id === store.editor.selected.id),
-  interact: store.editor.interact,
-  tool: store.editor.tool,
-}), { setInteract, editObject })
 class ScaleHelper extends Component {
   static propTypes = {
-    selected: PropTypes.object,
-    interact: PropTypes.string,
-    tool: PropTypes.string,
-    setInteract: PropTypes.func,
-    editObject: PropTypes.func,
-    camera: PropTypes.instanceOf(THREE.Camera),
-    mouseInput: PropTypes.instanceOf(MouseInput),
+    selected: PropTypes.object.isRequired,
+    interact: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool,
+    ]),
+    camera: PropTypes.instanceOf(THREE.Camera).isRequired,
+    mouseInput: PropTypes.instanceOf(MouseInput).isRequired,
+    setInteract: PropTypes.func.isRequired,
+    editObject: PropTypes.func.isRequired,
+    size: PropTypes.number.isRequired,
   }
-  elements = {}
 
   onMouseDown = (event, intersection, name) => {
     const { selected: { position, scale }, camera, setInteract } = this.props
@@ -66,9 +58,9 @@ class ScaleHelper extends Component {
     if (intersection) {
       editObject(this.props.selected.id, {
         scale: [
-          this.name === 'x' ? intersection.sub(this.offset).x + this.initScale[0] - position[0] : scale[0],
-          this.name === 'y' ? intersection.sub(this.offset).y + this.initScale[1] - position[1] : scale[1],
-          this.name === 'z' ? intersection.sub(this.offset).z + this.initScale[2] - position[2] : scale[2],
+          this.name === 'x' ? intersection.sub(this.offset).x / 100 + this.initScale[0] - position[0] : scale[0],
+          this.name === 'y' ? intersection.sub(this.offset).y / 100 + this.initScale[1] - position[1] : scale[1],
+          this.name === 'z' ? intersection.sub(this.offset).z / 100 + this.initScale[2] - position[2] : scale[2],
         ],
       })
     }
@@ -82,13 +74,8 @@ class ScaleHelper extends Component {
   }
 
   render () {
-    const { selected, tool, interact } = this.props
-    this.elements = []
-
-    if (!selected || tool !== 'scale') return null
-    const { position } = selected
+    const { interact, size } = this.props
     const origin = new THREE.Vector3(0, 0, 0)
-    const length = 2
 
     const arrows = [
       { key: 'x', dir: new THREE.Vector3(1, 0, 0) },
@@ -97,14 +84,14 @@ class ScaleHelper extends Component {
     ]
 
     return (
-      <group position={new THREE.Vector3(position[0], position[1], position[2])}>
+      <group>
         {arrows.map(item =>
           <ScaleArrow
             key={item.key}
             onMouseDown={(e, i) => this.onMouseDown(e, i, item.key)}
             color={interact === item.key ? hoverColor : colors[item.key]}
             hoverColor={hoverColor}
-            length={length}
+            length={size}
             origin={origin}
             dir={item.dir}
           />)}
@@ -113,4 +100,4 @@ class ScaleHelper extends Component {
   }
 }
 
-export default wrapStore(ScaleHelper)
+export default ScaleHelper

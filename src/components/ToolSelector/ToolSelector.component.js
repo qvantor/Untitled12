@@ -19,6 +19,7 @@ class ToolSelector extends Component {
     const tools = [
       { name: 'Translate', key: 'translate' },
       { name: 'Scale', key: 'scale' },
+      { name: 'Rotation', key: 'rotation' },
     ]
 
     return (
