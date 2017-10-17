@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as THREE from 'three'
 
+import { initialSize } from 'utils/objects/Params.types'
+
 class AmbientLight extends Component {
   static propTypes = {
     color: PropTypes.string.isRequired,
@@ -15,7 +17,7 @@ class AmbientLight extends Component {
     return (
       <group position={position}>
         <mesh>
-          <sphereGeometry radius={0.5} widthSegments={4} heightSegments={4} />
+          <sphereGeometry radius={initialSize * 0.5} widthSegments={4} heightSegments={4} />
           <meshBasicMaterial color={color} wireframe />
         </mesh>
         <ambientLight color={color} intensity={intensity} />

@@ -31,7 +31,7 @@ export const sphereGeometry = [
 
 export const torusGeometry = [
   { name: 'Radius', key: 'radius', type: usualNumber, pos: 0 },
-  { name: 'Tube', key: 'tube', type: { type: 'number', min: 0, max: 1, number: 'fractional' }, pos: 1 },
+  { name: 'Tube', key: 'tube', type: usualNumber, pos: 1 },
   { name: 'Radial segments', key: 'radialSegments', type: usualSegments, pos: 2 },
   { name: 'Tubular segments', key: 'tubularSegments', type: usualSegments, pos: 3 },
   { name: 'Arc', key: 'arc', type: usualThetaLength, pos: 4 },

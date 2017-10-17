@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as THREE from 'three'
+import { initialSize } from 'utils/objects/Params.types'
 
 class DirectionalLight extends Component {
   static propTypes = {
@@ -22,7 +23,7 @@ class DirectionalLight extends Component {
     return (
       <group>
         <mesh position={lookAtVector}>
-          <sphereGeometry radius={0.2} widthSegments={4} heightSegments={4} />
+          <sphereGeometry radius={initialSize * 0.2} widthSegments={4} heightSegments={4} />
           <meshBasicMaterial color={color} wireframe />
         </mesh>
         <line>
@@ -31,7 +32,7 @@ class DirectionalLight extends Component {
         </line>
         <group>
           <mesh lookAt={v3 || null} position={position}>
-            <planeGeometry width={1} height={1} />
+            <planeGeometry width={initialSize} height={initialSize} />
             <meshBasicMaterial side={THREE.DoubleSide} color={color} wireframe />
           </mesh>
           <directionalLight
