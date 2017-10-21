@@ -27,8 +27,15 @@ class PositionHelper extends Component {
   }
 
   componentDidMount () {
+    this.setDepthTest()
+  }
+
+  setDepthTest () {
     Object.keys(this.refs)
-      .forEach(key => this.refs[key].children.forEach(item => (item.material.depthTest = false)))
+      .forEach(key => this.refs[key].children.forEach(item => {
+        item.material.depthTest = false
+        item.material.depthWrite = false
+      }))
   }
 
   onMouseDown = (event, intersection, name) => {
@@ -41,7 +48,6 @@ class PositionHelper extends Component {
       intersection.point)
 
     this.offset = intersection.point.clone().sub(new THREE.Vector3(position[0], position[1], position[2]))
-    this.name = name
 
     document.addEventListener('mouseup', this.onDocumentMouseUp)
     document.addEventListener('mousemove', this.onDocumentMouseMove)
@@ -50,7 +56,7 @@ class PositionHelper extends Component {
 
   onDocumentMouseMove = (event) => {
     event.preventDefault()
-    const { mouseInput, selected: { position }, editObject } = this.props
+    const { mouseInput, selected: { position }, editObject, interact } = this.props
     const ray = mouseInput.getCameraRay(new THREE.Vector2(event.clientX, event.clientY))
 
     const intersection = dragPlane.intersectLine(new THREE.Line3(
@@ -60,9 +66,9 @@ class PositionHelper extends Component {
     if (intersection) {
       editObject(this.props.selected.id, {
         position: [
-          this.name === 'x' ? intersection.sub(this.offset).x : position[0],
-          this.name === 'y' ? intersection.sub(this.offset).y : position[1],
-          this.name === 'z' ? intersection.sub(this.offset).z : position[2],
+          interact === 'x' ? intersection.sub(this.offset).x : position[0],
+          interact === 'y' ? intersection.sub(this.offset).y : position[1],
+          interact === 'z' ? intersection.sub(this.offset).z : position[2],
         ],
       })
     }
@@ -100,4 +106,5 @@ class PositionHelper extends Component {
     )
   }
 }
+
 export default PositionHelper

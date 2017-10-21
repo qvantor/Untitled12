@@ -15,13 +15,15 @@ class PointLight extends Component {
   render () {
     const { color, intensity, position, distance, decay } = this.props
 
+    const props = { color, intensity, distance, decay }
+
     return (
       <group position={position}>
         <mesh>
           <sphereGeometry radius={initialSize * 0.5} widthSegments={4} heightSegments={4} />
           <meshBasicMaterial color={color} wireframe />
         </mesh>
-        <pointLight color={color} intensity={intensity} distance={distance} decay={decay} />
+        <pointLight {...props} />
       </group>
     )
   }

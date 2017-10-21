@@ -35,4 +35,5 @@ class LightsCreator extends Component {
     )
   }
 }
+
 export default connect(null, { addObject })(LightsCreator)

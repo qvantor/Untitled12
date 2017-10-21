@@ -53,13 +53,13 @@ class ScaleArrow extends Component {
         quaternion={this.calcQuaternion(dir)}>
         <line scale={new THREE.Vector3(1, Math.max(0, length - cubeSize), 1)}>
           <geometry vertices={[new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 1, 0)]} />
-          <lineBasicMaterial color={color} depthTest={false} />
+          <lineBasicMaterial color={color} depthTest={false} depthWrite={false} />
         </line>
         <mesh
           position={new THREE.Vector3(0, length - cubeSize, 0)}
           scale={new THREE.Vector3(cubeSize, cubeSize, cubeSize)}>
           <boxGeometry width={1} height={1} depth={1} />
-          <meshBasicMaterial color={color} depthTest={false} />
+          <meshBasicMaterial color={color} depthTest={false} depthWrite={false} />
         </mesh>
       </group>
     )
