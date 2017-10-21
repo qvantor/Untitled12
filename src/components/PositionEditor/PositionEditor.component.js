@@ -26,7 +26,7 @@ class PositionEditor extends Component {
     const { position } = selected
 
     return (
-      <div className='panel'>
+      <div>
         <h5>Position</h5>
         <PositionForm position={position} change={this.change} />
       </div>

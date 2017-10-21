@@ -6,6 +6,9 @@
 - [x] Add rotation tool
 - [x] Add lights
 - [x] Add lights helpers
+- [ ] Add materials
+- [ ] Add loaders
+- [ ] Add materials editor
 - [ ] Add cameras
 - [ ] Add cameras helpers
 - [ ] Add scene objects viewport

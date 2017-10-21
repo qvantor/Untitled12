@@ -1,14 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import PositionEditor from 'components/PositionEditor/PositionEditor.component'
-import RotationEditor from 'components/RotationEditor/RotationEditor.component'
-import ScaleEditor from 'components/ScaleEditor/ScaleEditor.component'
-import ObjectsEditor from 'components/ObjectsEditor/ObjectsEditor.component'
+import PropertiesTabs from 'components/PropertiesTabs/PropertiesTabs.component'
 import ToolSelector from 'components/ToolSelector/ToolSelector.component'
 import ObjectsTabs from 'components/ObjectsTabs/ObjectsTabs.component'
 
 import { Layout } from 'antd'
+
 const { Header, Sider, Footer } = Layout
 
 export const EditorLayout = ({ children }) =>
@@ -21,10 +19,7 @@ export const EditorLayout = ({ children }) =>
       <Sider width={260}>
         <div className='p-10 p-top-bottom-0 panels sider'>
           <ObjectsTabs />
-          <PositionEditor />
-          <RotationEditor />
-          <ScaleEditor />
-          <ObjectsEditor />
+          <PropertiesTabs />
         </div>
       </Sider>
     </Layout>

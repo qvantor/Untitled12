@@ -1,4 +1,4 @@
-import { zeroToMax, color, position } from './Params.types'
+import { zeroToMax, color } from './Params.types'
 
 export const AmbientLight = [
   { name: 'Color', key: 'color', type: color, pos: 0 },

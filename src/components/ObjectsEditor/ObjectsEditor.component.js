@@ -29,7 +29,7 @@ class ObjectsEditor extends Component {
     const objectTypes = Object.assign({}, LightsTypes, GeometryTypes)
 
     return (
-      <div className='panel'>
+      <div>
         <h5>Params</h5>
         {objectTypes[type]
           .map((item, i) =>

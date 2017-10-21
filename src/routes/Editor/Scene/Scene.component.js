@@ -4,6 +4,7 @@ import Stats from 'stats.js'
 import React3 from 'react-three-renderer'
 import MouseInput from 'utils/MouseInput'
 import HotKeys from 'components/HotKeys/HotKeys.component'
+import { initialSize } from 'utils/objects/Params.types'
 
 import SceneElements from './Scene.elements'
 import Camera from './Scene.camera'
@@ -87,6 +88,7 @@ class Scene extends Component {
                 height={height} />
               <Tools camera={this.camera} mouseInput={this.refs.mouseInput} />
               <SceneElements id={sceneId} />
+              <gridHelper size={initialSize * 10} />
             </scene>
           </React3>
         </div>
