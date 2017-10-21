@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import wrapStore from 'utils/wrapStore'
 import PropTypes from 'prop-types'
 import * as THREE from 'three'
+
 import AmbientLight from './AmbientLight.component'
 import DirectionalLight from './DirectionalLight.component'
 import PointLight from './PointLight.component'
+
 import * as LightsTypes from 'utils/objects/Lights.types'
 import { selectGeometry } from 'store/editor/editor.actions'
 

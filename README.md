@@ -3,18 +3,17 @@
 - [x] Add scale
 - [x] Add simple hotkeys
 - [x] Add scale tool
-- [ ] Add rotation tool
-- [ ] Add lights
+- [x] Add rotation tool
+- [x] Add lights
+- [x] Add lights helpers
 - [ ] Add cameras
-- [ ] Add lights helpers
 - [ ] Add cameras helpers
 - [ ] Add scene objects viewport
- 
+- [ ] Add sprites
 
 #### Middle term
 - [ ] Add multicameras view
 
-
 #### Fixes
-- [ ] MouseInput wrong intersections order
+- [x] MouseInput wrong intersections order
 - [ ] mouseLeave/MouseEnter on parents

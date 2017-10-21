@@ -240,13 +240,14 @@ class MouseInput extends Module {
     this._raycaster.setFromCamera(relativeMouseCoords, this._camera)
 
     if (this._restrictIntersections) {
-      intersections = this._raycaster.intersectObjects(this._objectsToIntersect,
-        this._restrictedIntersectionRecursive)
+      intersections = this._raycaster.intersectObjects(this._objectsToIntersect, this._restrictedIntersectionRecursive)
     } else {
       intersections = this._raycaster.intersectObject(this._scene, true)
     }
     if (intersections.length > 0) {
-      return [intersections[0]]
+      const depthTest = intersections
+        .find(item => !item.object.material.depthTest && !item.object.material.depthWrite)
+      return depthTest ? [depthTest] : [intersections[0]]
     } else {
       return []
     }
@@ -322,7 +323,7 @@ class MouseInput extends Module {
       const uuid = unseenUUIDs[i]
 
       if (!(mouseLeaveEvent.isDefaultPrevented() ||
-        mouseLeaveEvent.isPropagationStopped())) {
+          mouseLeaveEvent.isPropagationStopped())) {
         this.dispatchEvent(this._hoverObjectMap[uuid].object,
           'onMouseLeave', mouseLeaveEvent)
       }
@@ -359,7 +360,7 @@ class MouseInput extends Module {
         }
 
         if (!(mouseEnterEvent.isDefaultPrevented() ||
-          mouseEnterEvent.isPropagationStopped())) {
+            mouseEnterEvent.isPropagationStopped())) {
           this.dispatchEvent(object, 'onMouseEnter',
             mouseEnterEvent, intersection, depth)
         }

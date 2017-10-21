@@ -38,7 +38,6 @@ class ScaleHelper extends Component {
 
     this.offset = intersection.point.clone().sub(new THREE.Vector3(position[0], position[1], position[2]))
     this.initScale = scale
-    this.name = name
 
     document.addEventListener('mousemove', this.onDocumentMouseMove)
     document.addEventListener('mouseup', this.onDocumentMouseUp)
@@ -48,7 +47,7 @@ class ScaleHelper extends Component {
 
   onDocumentMouseMove = (event) => {
     event.preventDefault()
-    const { mouseInput, selected: { scale, position }, editObject } = this.props
+    const { mouseInput, selected: { scale, position }, editObject, interact } = this.props
     const ray = mouseInput.getCameraRay(new THREE.Vector2(event.clientX, event.clientY))
 
     const intersection = dragPlane.intersectLine(new THREE.Line3(
@@ -58,9 +57,9 @@ class ScaleHelper extends Component {
     if (intersection) {
       editObject(this.props.selected.id, {
         scale: [
-          this.name === 'x' ? intersection.sub(this.offset).x / 100 + this.initScale[0] - position[0] : scale[0],
-          this.name === 'y' ? intersection.sub(this.offset).y / 100 + this.initScale[1] - position[1] : scale[1],
-          this.name === 'z' ? intersection.sub(this.offset).z / 100 + this.initScale[2] - position[2] : scale[2],
+          interact === 'x' ? (intersection.sub(this.offset).x - position[0]) / 10 + this.initScale[0] : scale[0],
+          interact === 'y' ? (intersection.sub(this.offset).y - position[1]) / 10 + this.initScale[1] : scale[1],
+          interact === 'z' ? (intersection.sub(this.offset).z - position[2]) / 10 + this.initScale[2] : scale[2],
         ],
       })
     }

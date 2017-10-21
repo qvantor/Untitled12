@@ -38,7 +38,7 @@ export const sphere = {
 
 export const torus = {
   type: 'torusGeometry',
-  params: [initialSize, 10, 8, 6, 6.3],
+  params: [initialSize, initialSize / 2, 8, 6, 6.3],
   position,
   rotation,
   scale,
