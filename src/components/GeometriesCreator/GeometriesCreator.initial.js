@@ -2,7 +2,7 @@ import { initialSize } from 'utils/objects/Params.types'
 
 const material = {
   type: 'meshBasicMaterial',
-  color: 0x00ff00,
+  params: ['#ffffff', false, true, 1, 0, '0'],
 }
 
 const position = [0, 0, 0]

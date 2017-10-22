@@ -246,7 +246,7 @@ class MouseInput extends Module {
     }
     if (intersections.length > 0) {
       const depthTest = intersections
-        .find(item => !item.object.material.depthTest && !item.object.material.depthWrite)
+        .find(item => item.object.material && !item.object.material.depthTest && !item.object.material.depthWrite)
       return depthTest ? [depthTest] : [intersections[0]]
     } else {
       return []

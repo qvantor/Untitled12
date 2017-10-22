@@ -11,7 +11,7 @@ const { Header, Sider, Footer } = Layout
 
 export const EditorLayout = ({ children }) =>
   <Layout style={{ height: '100vh', overflow: 'hidden' }}>
-    <Header className='header' style={{ height: 20 }} />
+    <Header className='header' />
     <Layout>
       <Layout>
         {children}

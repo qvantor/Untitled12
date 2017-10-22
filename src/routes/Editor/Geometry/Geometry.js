@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import * as GeometryTypes from 'utils/objects/Geometries.types'
 
 import { selectGeometry } from 'store/editor/editor.actions'
+import Material from '../Material/Material'
 
 import * as THREE from 'three'
 
@@ -22,7 +23,7 @@ class BoxGeometry extends Component {
   click = (e, { object }) => this.props.selectGeometry(object.name, 'geometries')
 
   render () {
-    const { item: { id, position, rotation, scale, params, type } } = this.props
+    const { item: { id, position, rotation, scale, params, type, material } } = this.props
     const TagName = type
     return (
       <mesh
@@ -38,7 +39,7 @@ class BoxGeometry extends Component {
           {...GeometryTypes[type]
             .map(item => ({ [item.key]: params[item.pos] }))
             .reduce((acum, item) => Object.assign({}, acum, item), {})} />
-        <meshStandardMaterial color={0x34495e} />
+        <Material material={material} />
       </mesh>
     )
   }
