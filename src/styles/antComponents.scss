@@ -1,20 +1,20 @@
 .ant-btn {
   &.ant-btn-background-ghost {
     border-radius: 0;
-    border-color: #7f8c8d;
-    color: #ecf0f1;
+    border-color: $border;
+    color: $color;
 
     &.ant-btn-primary {
-      border-color: rgba(52, 152, 219, 1.0);
-      background: rgba(52, 152, 219, .9) !important;
+      border-color: $activeBorder;
+      background: $activeBackground !important;
 
       &:hover, &:focus {
-        background: rgba(52, 152, 219, 1) !important;
+        background: $hoverBackground !important;
         color: #fff;
       }
     }
     &:hover {
-      background: rgba(255, 255, 255, .2) !important;
+      background: $hoverBackground !important;
     }
   }
 }
@@ -25,21 +25,73 @@
     background: transparent;
     padding: 3px 10px;
     border-radius: 0;
-    border-color: #7f8c8d;
-    color: #fff;
+    border-color: $border;
+    color: $color;
 
     .anticon {
       margin: 0;
     }
+    &.ant-tabs-tab-active {
+      color: $activeColor;
+    }
   }
   .ant-tabs-tab-active {
-    border-color: rgba(52, 152, 219, 1.0);
-    background: rgba(52, 152, 219, .9);
+    border-color: $activeBorder;
+    background: $activeBackground;
   }
+}
+
+.ant-select {
+  width: 100%;
+  .ant-select-selection {
+    border-radius: 0;
+    background: transparent;
+    border-color: $border;
+    color: $color;
+
+    .ant-select-arrow {
+      color: $color;
+    }
+  }
+}
+
+.ant-select-dropdown {
+  border: 1px solid $border;
+  background: $background;
+  border-radius: 0;
+
+  .ant-select-dropdown-menu {
+    li {
+      color: $color;
+
+      &.ant-select-dropdown-menu-item-active {
+        background: transparent;
+      }
+      &.ant-select-dropdown-menu-item-selected {
+        background: $activeBackground;
+        color: $activeColor;
+
+        &:hover {
+          background: $activeBackground;
+        }
+      }
+      &:hover {
+        background: $hoverBackground;
+      }
+    }
+  }
+}
+
+.ant-layout-header {
+  background: $background;
+  height: 20px;
+}
+
+.ant-layout-sider {
+  background: $background;
 }
 
 .ant-layout-footer {
   padding: 10px;
-  background: #404040;
-  color: #fff;
+  background: $background;
 }
