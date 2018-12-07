@@ -1,3 +1,9 @@
+# Untitled12
+
+![Screenshot](demo.gif)
+
+Javascript Three.js editor based by React and react-three-renderer.
+
 #### Short term
 - [x] Add rotation
 - [x] Add scale
